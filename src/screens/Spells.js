@@ -1,12 +1,15 @@
 import {useState} from 'react'
-import { Dimensions, Text, View, StyleSheet, FlatList, TextInput } from 'react-native'
+import { Text, StyleSheet, FlatList, TextInput, Pressable, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useSpell } from '../hooks/useSpell'
 
 const Spells = ({spells, numberOptions}) => {
+    const {spell, error, fetchSpellByIndex} = useSpell()
     const [query, setQuery] = useState('')
-    const [currentSpell, setCurrentSpell] = useState({})
-
     options = selectOptions(query, spells, numberOptions)
+
+    console.log(spell)
+    console.log(error)
 
     return (
         <SafeAreaView style={styles.container}>
@@ -18,16 +21,37 @@ const Spells = ({spells, numberOptions}) => {
             />
             <FlatList
                 data={options} 
-                renderItem={({item}) => <Spell name={item.name} index={item.index}/>}
+                renderItem={({item}) => {
+                    return (
+                        <Item 
+                            name={item.name} 
+                            index={item.index}
+                            onPress={() => fetchSpellByIndex(item.index)}
+                        />
+                    )
+                }}
                 keyExtractor={item => item.index}
             />
+            {
+                spell && (
+                    <View style={styles.spellContent}>
+                        <Text style={styles.spellTitle}>{spell.name}</Text>
+                    </View>
+                )
+            }
 
         </SafeAreaView>
     )
 }
 
-const Spell = ({name, index}) => {
-    return <Text>{name}</Text>
+const Item = ({name, index, onPress}) => {
+    return (
+        <Pressable
+            onPress={onPress}
+        >
+            <Text>{name}</Text>
+        </Pressable>
+    )
 }
 
 
@@ -60,6 +84,18 @@ const styles = StyleSheet.create({
         margin: 12,
         borderWidth: 1,
         padding: 10,        
+    },
+    spellContent: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    spellTitle: {
+        fontSize: 40,
+        fontWeight: 'bold',
+        backgroundColor: 'purple',
+        minHeight: 40,
+        width: '100%',
     }
 })
 
