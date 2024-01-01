@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import Spells from './src/screens/Spells';
 import { useSpellList } from  './src/hooks/useSpellList'
+import { theme } from './src/theme'
 
 export default function App() {
   const {spells, loading, error} = useSpellList()
@@ -19,7 +20,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.primary,
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 10 

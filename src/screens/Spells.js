@@ -8,8 +8,6 @@ const Spells = ({spells, numberOptions}) => {
     const [query, setQuery] = useState('')
     options = selectOptions(query, spells, numberOptions)
 
-    console.log(spell)
-    console.log(error)
 
     return (
         <SafeAreaView style={styles.container}>
@@ -77,7 +75,8 @@ const selectOptions = (query, spells, limit) => {
 
 const styles = StyleSheet.create({
     container: {
-        background: 'blue',
+        background: 'red',
+        flex: 1,
     },
     textInput: {
         height: 40,
