@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 
 export const useSpell = () => {
     const [index, setIndex] = useState('')
-    const [spell, setSpell] = useState({})
+    const [spell, setSpell] = useState(null)
     const [error, setError] = useState('')
 
     useEffect(() => {
