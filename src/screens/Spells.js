@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { useSpell } from '../hooks/useSpell'
 import { theme } from '../theme'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { levelWithSuffix } from '../utils/math'
 
 
 const Spells = ({spells, numberOptions}) => {
@@ -71,14 +72,45 @@ const Spells = ({spells, numberOptions}) => {
                     <ScrollView contentContainerStyle={styles.spellContent}>
                         {/* TODO: add more information about each spell */}
                         <Text style={styles.spellTitle}>{spell.name}</Text>
+                        {spell.level && (
+                            <Text
+                                style={styles.spellSubtitle} 
+                            >
+                                {`${levelWithSuffix(spell.level)}-level`} {spell.school?.name.toLowerCase()}
+                            </Text>
+                        )}
+                        <View style={styles.spellInfoGroup}>
+                            <Text style={styles.spellInfoCategory}>Casting Time:</Text>
+                            <Text style={styles.spellInfoData}>{spell.casting_time}</Text>
+                        </View>
+                        <View style={styles.spellInfoGroup}>
+                            <Text style={styles.spellInfoCategory}>Range:</Text>
+                            <Text style={styles.spellInfoData}>{spell.range}</Text>
+                        </View>
+                        <View style={styles.spellInfoGroup}>
+                            <Text style={styles.spellInfoCategory}>Components:</Text>
+                            <Text style={styles.spellInfoData}>
+                                {spell.components.join(', ')}
+                            </Text>
+                        </View>
+                        <View style={styles.spellInfoGroup}>
+                            <Text style={styles.spellInfoCategory}>Duration:</Text>
+                            <Text style={styles.spellInfoData}>
+                                {spell.concentration ? (
+                                    `Concentration, ${spell.duration.toLowerCase()}`
+                                ) : (
+                                    spell.duration
+                                )}
+                            </Text>
+                        </View>
+
                         {
-                            spell.desc?.map(text => {
+                            spell.desc?.map((text, i) => {
                                 return (
-                                    <Text style={styles.paragraph}>{text}</Text>
+                                    <Text key={`${spell.index}-paragraph-${i}`} style={styles.paragraph}>{text}</Text>
                                 )
                             })
                         }
-                        <Text></Text>
                     </ScrollView>
                 )
             }
@@ -162,17 +194,38 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     spellTitle: {
-        color: theme.colors.text,
+        color: theme.colors.secondary,
         fontSize: theme.font.size.large,
         fontWeight: 'bold',
         minHeight: 40,
         width: '100%',
     },
+    spellSubtitle: {
+        color: theme.colors.text,
+        fontSize: theme.font.size.small,
+        fontWeight: theme.font.weight.light,
+        fontStyle: 'italic',
+    },
     paragraph: {
         color: theme.colors.text,
         fontSize: theme.font.size.small,
         marginTop: 10,
-    }
+    },
+    spellInfoGroup: {
+        display: 'flex',
+        flexDirection: 'row'
+    },
+    spellInfoCategory: {
+        color: theme.colors.accent,
+        marginRight: 5,
+        fontWeight: theme.font.weight.bold,
+        fontSize: theme.font.size.small,
+    },
+    spellInfoData: {
+        color: theme.colors.text,
+        fontWeight: theme.font.weight.normal,
+        fontSize: theme.font.size.small,
+    },
 })
 
 export default Spells
