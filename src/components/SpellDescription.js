@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
         color: theme.colors.text,
         fontSize: theme.font.size.small,
         marginTop: 10,
+        lineHeight: 24,
     },
 
 })
