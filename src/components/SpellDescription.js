@@ -8,7 +8,6 @@ import SpellInfo from "./SpellInfo"
 const SpellDescription = ({spell}) => {
     return (
         <ScrollView contentContainerStyle={styles.spellContent}>
-        {/* TODO: add more information about each spell */}
         <Text style={styles.spellTitle}>{spell.name}</Text>
         {spell.level && (
             <Text
@@ -68,7 +67,6 @@ const styles = StyleSheet.create({
         marginTop: 10,
         lineHeight: 24,
     },
-
 })
 
 export default SpellDescription
