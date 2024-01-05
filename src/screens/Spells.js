@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, StatusBar } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useSpell } from '../hooks/useSpell'
 import { theme } from '../theme'
@@ -13,6 +13,9 @@ const Spells = ({spells, numberOptions}) => {
 
     return (
         <SafeAreaView style={styles.container}>
+            <StatusBar 
+                barStyle={'light-content'} 
+            />
             <MaterialCommunityIcons name="wizard-hat" size={theme.font.size.extraLarge} color={theme.colors.text} />
             <SearchBar 
                 data={spells}
