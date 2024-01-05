@@ -8,7 +8,7 @@ import SearchBar from '../components/SearchBar'
 import { rankByStringMatch } from '../utils/sorting'
 
 
-const Spells = ({spells, numberOptions}) => {
+const SpellScreen = ({spells, numberOptions}) => {
     const {spell, error, fetchSpellByIndex} = useSpell()
 
     return (
@@ -61,4 +61,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Spells
+export default SpellScreen
