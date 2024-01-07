@@ -2,28 +2,28 @@ import { View, Text, StyleSheet } from 'react-native'
 import { theme } from '../theme'
 
 
-const SpellInfo = ({title, content}) => {
+const InfoText = ({title, content}) => {
     return (
-        <View style={styles.spellInfoGroup}>
-            <Text style={styles.spellInfoCategory}>{title}</Text>
-            <Text style={styles.spellInfoData}>{content}</Text>
+        <View style={styles.InfoGroup}>
+            <Text style={styles.InfoCategory}>{title}</Text>
+            <Text style={styles.InfoData}>{content}</Text>
         </View>
     )
 }
 
 
 const styles = StyleSheet.create({
-    spellInfoGroup: {
+    InfoGroup: {
         display: 'flex',
         flexDirection: 'row'
     },
-    spellInfoCategory: {
+    InfoCategory: {
         color: theme.colors.accent,
         marginRight: 5,
         fontWeight: theme.font.weight.bold,
         fontSize: theme.font.size.small,
     },
-    spellInfoData: {
+    InfoData: {
         color: theme.colors.text,
         fontWeight: theme.font.weight.normal,
         fontSize: theme.font.size.small,
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default SpellInfo
+export default InfoText

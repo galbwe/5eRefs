@@ -2,7 +2,7 @@ import { StyleSheet, ScrollView, View, Text } from "react-native"
 
 import { theme } from '../theme'
 import { levelWithSuffix } from '../utils/math'
-import SpellInfo from "./SpellInfo"
+import InfoText from "./InfoText"
 
 
 const SpellDescription = ({spell}) => {
@@ -16,10 +16,10 @@ const SpellDescription = ({spell}) => {
                 {`${levelWithSuffix(spell.level)}-level`} {spell.school?.name.toLowerCase()}
             </Text>
         )}
-        <SpellInfo title={'Casting Time:'} content={spell.casting_time}/>
-        <SpellInfo title={'Range:'} content={spell.range}/>
-        <SpellInfo title={'Components'} content={spell.components?.join(', ')}/>
-        <SpellInfo 
+        <InfoText title={'Casting Time:'} content={spell.casting_time}/>
+        <InfoText title={'Range:'} content={spell.range}/>
+        <InfoText title={'Components'} content={spell.components?.join(', ')}/>
+        <InfoText 
             title={'Duration:'} 
             content={
                 spell.concentration ? (
