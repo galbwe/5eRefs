@@ -3,6 +3,7 @@ import { StyleSheet, ScrollView, View, Text } from 'react-native'
 import {theme} from '../theme'
 import StatBlockSection from './StatBlockSection'
 import InfoText from './InfoText'
+import AbilityScores from './AbilityScores'
 
 
 const MonsterDescription = ({monster}) => {
@@ -23,33 +24,24 @@ const MonsterDescription = ({monster}) => {
                 <InfoText title={'Hit Points'} content={`${monster.hit_points} (${monster.hit_points_roll})`}/>
                 <InfoText title={'Speed'} content={speed}/>
             </StatBlockSection>
-            {/* ability score section */}
             <StatBlockSection style={styles.statBlockBottomBorder}>
-                <View>
-                    <InfoText title={'STR'} content={`${monster.strength} (${getAbilityModifier(monster.strength)})`}/>
-                    <InfoText title={'CON'} content={`${monster.constitution} (${getAbilityModifier(monster.constitution)})`}/>
-                    <InfoText title={'DEX'} content={`${monster.dexterity} (${getAbilityModifier(monster.dexterity)})`}/>
-                    <InfoText title={'WIS'} content={`${monster.wisdom} (${getAbilityModifier(monster.wisdom)})`}/>
-                    <InfoText title={'CHA'} content={`${monster.charisma} (${getAbilityModifier(monster.charisma)})`}/>
-                    <InfoText title={'INT'} content={`${monster.intelligence} (${getAbilityModifier(monster.intelligence)})`}/>
-                </View>
+                <AbilityScores 
+                    str={monster.strength} 
+                    con={monster.constitution}
+                    dex={monster.dexterity}
+                    wis={monster.wisdom}
+                    cha={monster.charisma}
+                    int={monster.intelligence}
+                />
             </StatBlockSection>
         </ScrollView>
     )
 }
 
+
 const getArmorClass = (monster) => {
     const acs = monster.armor_class.map(x => x.value) 
     return Math.max(...acs) 
-}
-
-
-const getAbilityModifier = (score) => {
-    const mod = Math.floor((score - 10) / 2)
-    if (mod >= 0) {
-        return `+${mod}`
-    }
-    return `-${mod}`
 }
 
 
@@ -62,8 +54,10 @@ const getSpeed = (monster) => {
     return [walkSpeed, ...otherSpeeds].join(', ')
 }
 
+
 const styles = StyleSheet.create({
     monsterContent: {
+        minWidth: '80%',
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
