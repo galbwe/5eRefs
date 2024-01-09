@@ -12,7 +12,6 @@ export const useMonsterList = () => {
         const headers = new Headers({ Accept: "application/json" });
         const response = await fetch(url, { headers: headers });
         const status = await response.status;
-        console.log(status);
         if (status != 200) {
           throw new Error("Unable to fetch monster list");
         }

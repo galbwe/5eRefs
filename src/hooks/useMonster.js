@@ -10,12 +10,10 @@ export const useMonster = () => {
       // fetch monster data
       (async () => {
         const url = `https://www.dnd5eapi.co/api/monsters/${index}`;
-        console.log(url);
         const headers = { Accept: "application/json" };
         try {
           const response = await fetch(url, { headers: headers });
           if (!response.ok) {
-            console.log(response.status);
             throw new Error("Received error response from monster endpoint");
           }
           const data = await response.json();

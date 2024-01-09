@@ -10,12 +10,10 @@ export const useSpell = () => {
       // fetch spell data
       (async () => {
         const url = `https://www.dnd5eapi.co/api/spells/${index}`;
-        console.log(url);
         const headers = { Accept: "application/json" };
         try {
           const response = await fetch(url, { headers: headers });
           if (!response.ok) {
-            console.log(response.status);
             throw new Error("Received error response from spell endpoint");
           }
           const data = await response.json();

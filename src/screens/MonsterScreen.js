@@ -8,7 +8,6 @@ import MonsterDescription from "../components/MonsterDescription";
 
 const MonsterScreen = ({ monsters, numberOptions }) => {
   const { monster, error, fetchMonsterByIndex } = useMonster();
-  console.log(monster);
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={"light-content"} />
