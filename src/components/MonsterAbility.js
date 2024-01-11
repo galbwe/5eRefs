@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import { theme } from "../theme";
 
-const MonsterAction = ({ title, content }) => {
+const MonsterAbility = ({ title, content }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MonsterAction;
+export default MonsterAbility;
