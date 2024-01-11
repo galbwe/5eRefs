@@ -4,6 +4,7 @@ import { theme } from "../theme";
 import StatBlockSection from "./StatBlockSection";
 import InfoText from "./InfoText";
 import AbilityScores from "./AbilityScores";
+import MonsterAction from "./MonsterAction";
 
 const MonsterDescription = ({ monster }) => {
   const armorClass = getArmorClass(monster);
@@ -34,6 +35,12 @@ const MonsterDescription = ({ monster }) => {
           cha={monster.charisma}
           int={monster.intelligence}
         />
+      </StatBlockSection>
+      <StatBlockSection>
+        <Text style={styles.monsterTitle}>Actions</Text>
+        {monster.actions.map((action) => {
+          return <MonsterAction title={action.name} content={action.desc} />;
+        })}
       </StatBlockSection>
     </ScrollView>
   );
